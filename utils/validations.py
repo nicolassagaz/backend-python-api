@@ -1,4 +1,4 @@
-def validate_titlw(title):
+def validate_title(title):
 
     if title.strip() == "":
         return False
