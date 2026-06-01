@@ -32,8 +32,6 @@ def find_objective(objective_id: int):
     return get_objective_by_id(objective_id)
 
 @app.post("/objectives")
-def create_objective(
-    title: str
-):
+def create_objective(title: str):
 
     return add_objective(title)
