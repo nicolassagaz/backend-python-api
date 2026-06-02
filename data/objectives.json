@@ -2,16 +2,16 @@
     {
         "id": 1,
         "title": "Aprender Python Backend",
-        "completed": false
-    },
-    {
-        "id": 2,
-        "title": "Criar sistema de chamados",
-        "completed": false
+        "completed": true
     },
     {
         "id": 3,
         "title": "Construir portfólio",
         "completed": true
+    },
+    {
+        "id": 4,
+        "title": "Aprender PostgreSQL",
+        "completed": false
     }
 ]

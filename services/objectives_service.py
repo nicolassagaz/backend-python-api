@@ -1,13 +1,13 @@
-from services.file_service import (load_objectives,save_objectives)
+from repositories.objectives_repository import(find_all, find_by_id, create, update, delete)
 
 from utils.validations import validate_title
 
 def get_all_objectives():
 
-    return load_objectives()
+    return find_all()
 
 def get_completed_objectives():
-    objectives = load_objectives()
+    objectives = find_all()
 
     completed = []
 
@@ -20,18 +20,11 @@ def get_completed_objectives():
 
 def get_objective_by_id(objective_id):
 
-    objectives = load_objectives()
-
-    for objective in objectives:
-
-        if objective["id"] == objective_id:
-            return objective
-
-    return None
+    return find_by_id(objective_id)
 
 def add_objective(title):
 
-    objectives = load_objectives()
+    objectives = find_all()
 
     if validate_title(title) == False:
 
@@ -43,8 +36,17 @@ def add_objective(title):
         "completed": False
     }
 
-    objectives.append(new_objective)
+    return create(new_objective)
 
-    save_objectives(objectives)
+def update_objective(objective_id):
+    objective = find_by_id(objective_id)
 
-    return new_objective
+    if objective is None:
+        return None
+    
+    objective["completed"] = True
+
+    return update(objective_id, objective)
+
+def delete_objective(objective_id):
+    return delete(objective_id)

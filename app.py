@@ -4,7 +4,9 @@ from services.objectives_service import (
     get_all_objectives,
     get_completed_objectives,
     get_objective_by_id,
-    add_objective
+    add_objective,
+    update_objective,
+    delete_objective
 )
 
 app = FastAPI()
@@ -35,3 +37,11 @@ def find_objective(objective_id: int):
 def create_objective(title: str):
 
     return add_objective(title)
+
+@app.put("/objectives/{objective_id}")
+def complete_objective(objective_id: int):
+    return update_objective(objective_id)
+
+@app.delete("/objective/{objective_id}")
+def remove_objective(objective_id: int):
+    return delete_objective(objective_id)
