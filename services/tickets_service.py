@@ -36,15 +36,16 @@ def create_ticket(title, description, priority):
 
     return create(new_ticket)
 
-def update_ticket(objective_id):
-    objective = find_by_id(objective_id)
+def update_ticket_status(ticket_id, status):
 
-    if objective is None:
+    ticket = find_by_id(ticket_id)
+
+    if ticket is None:
         return None
-    
-    objective["completed"] = True
 
-    return update(objective_id, objective)
+    ticket["status"] = status
+
+    return update(ticket_id, ticket)
 
 def delete_ticket(objective_id):
     return delete(objective_id)

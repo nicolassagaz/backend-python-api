@@ -5,7 +5,7 @@ from services.tickets_service import (
     get_completed_objectives,
     get_ticket_by_id,
     create_ticket,
-    update_ticket,
+    update_ticket_status,
     delete_ticket
 )
 
@@ -46,16 +46,17 @@ def create_new_ticket(
 
     return create_ticket(title, description, priority)
 
-@app.put("/objectives/{objective_id}")
-def complete_objective(objective_id: int):
-    
-    objective = update_ticket(objective_id)
+@app.put("/tickets/{ticket_id}")
+def update_ticket(ticket_id: int, status: str):
 
-    if objective is None:
+    ticket = update_ticket_status(ticket_id, status)
 
-        raise HTTPException(status_code=404, detail="Objetivo não encontrado")
-    
-    return objective
+    if ticket is None:
+
+        raise HTTPException(status_code=404,
+            detail="Chamado não encontrado")
+
+    return ticket
 
 @app.delete("/objectives/{objective_id}")
 def remove_objective(objective_id: int):
