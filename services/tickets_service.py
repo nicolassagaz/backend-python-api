@@ -22,21 +22,19 @@ def get_ticket_by_id(objective_id):
 
     return find_by_id(objective_id)
 
-def add_ticket(title):
+def create_ticket(title, description, priority):
 
-    objectives = find_all()
+    tickets = find_all()
 
-    if validate_title(title) == False:
-
-        return None
-
-    new_objective = {
-        "id": len(objectives) + 1,
+    new_ticket = {
+        "id": len(tickets) + 1,
         "title": title,
-        "completed": False
+        "description": description,
+        "priority": priority,
+        "status": "Aberto"
     }
 
-    return create(new_objective)
+    return create(new_ticket)
 
 def update_ticket(objective_id):
     objective = find_by_id(objective_id)

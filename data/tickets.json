@@ -7,10 +7,17 @@
         "status": "Aberto"
     },
     {
-       "id": 2,
+        "id": 2,
         "title": "Internet instável",
         "description": "Perda de conexão durante o expediente",
         "priority": "Média",
-        "status": "Em andamento" 
+        "status": "Em andamento"
+    },
+    {
+        "id": 4,
+        "title": "Notebook sem imagem",
+        "description": "Tela permanece preta após ligar",
+        "priority": "Alta",
+        "status": "Aberto"
     }
 ]

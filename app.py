@@ -1,12 +1,12 @@
 from fastapi import FastAPI, HTTPException
 
 from services.tickets_service import (
-    get_all_objectives,
+    get_all_tickets,
     get_completed_objectives,
-    get_objective_by_id,
-    add_objective,
-    update_objective,
-    delete_objective
+    get_ticket_by_id,
+    create_ticket,
+    update_ticket,
+    delete_ticket
 )
 
 app = FastAPI()
@@ -21,7 +21,7 @@ def home():
 
 @app.get("/objectives")
 def list_objectives():
-    return get_all_objectives()
+    return get_all_tickets()
 
 
 @app.get("/objectives/completed")
@@ -31,26 +31,25 @@ def list_completed_objectives():
 
 @app.get("/objectives/{objective_id}")
 def find_objective(objective_id: int):
-    objective = get_objective_by_id(objective_id)
+    objective = get_ticket_by_id(objective_id)
 
     if objective is None:
         raise HTTPException(status_code=404, detail="Objetivo não encontrado")
     return objective
 
-@app.post("/objectives", status_code=201)
-def create_objective(title: str):
+@app.post("/tickets", status_code=201)
+def create_new_ticket(
+    title: str,
+    description: str,
+    priority: str
+):
 
-    objective = add_objective(title)
-
-    if objective is None:
-        raise HTTPException(status_code=400, detail="Título inválido")
-    
-    return objective
+    return create_ticket(title, description, priority)
 
 @app.put("/objectives/{objective_id}")
 def complete_objective(objective_id: int):
     
-    objective = update_objective(objective_id)
+    objective = update_ticket(objective_id)
 
     if objective is None:
 
@@ -61,7 +60,7 @@ def complete_objective(objective_id: int):
 @app.delete("/objectives/{objective_id}")
 def remove_objective(objective_id: int):
     
-    deleted = delete_objective(objective_id)
+    deleted = delete_ticket(objective_id)
 
     if deleted is False:
 
