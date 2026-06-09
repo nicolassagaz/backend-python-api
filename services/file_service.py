@@ -1,7 +1,7 @@
 import json
 
 
-FILE_PATH = "data/objectives.json"
+FILE_PATH = "data/tickets.json"
 
 
 def load_objectives():

@@ -1,8 +1,8 @@
-from repositories.objectives_repository import(find_all, find_by_id, create, update, delete)
+from repositories.tickets_repository import(find_all, find_by_id, create, update, delete)
 
 from utils.validations import validate_title
 
-def get_all_objectives():
+def get_all_tickets():
 
     return find_all()
 
@@ -18,11 +18,11 @@ def get_completed_objectives():
 
     return completed
 
-def get_objective_by_id(objective_id):
+def get_ticket_by_id(objective_id):
 
     return find_by_id(objective_id)
 
-def add_objective(title):
+def add_ticket(title):
 
     objectives = find_all()
 
@@ -38,7 +38,7 @@ def add_objective(title):
 
     return create(new_objective)
 
-def update_objective(objective_id):
+def update_ticket(objective_id):
     objective = find_by_id(objective_id)
 
     if objective is None:
@@ -48,5 +48,5 @@ def update_objective(objective_id):
 
     return update(objective_id, objective)
 
-def delete_objective(objective_id):
+def delete_ticket(objective_id):
     return delete(objective_id)

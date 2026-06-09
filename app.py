@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 
-from services.objectives_service import (
+from services.tickets_service import (
     get_all_objectives,
     get_completed_objectives,
     get_objective_by_id,

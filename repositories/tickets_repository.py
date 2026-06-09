@@ -4,46 +4,46 @@ def find_all():
     return load_objectives()
 
 def find_by_id(objective_id):
-    objectives = load_objectives()
+    tickets = load_objectives()
 
-    for objective in objectives:
+    for objective in tickets:
         if objective["id"] == objective_id:
             return objective
         
     return None
 
 def create(new_objective):
-    objectives = load_objectives()
+    tickets = load_objectives()
 
-    objectives.append(new_objective)
+    tickets.append(new_objective)
 
-    save_objectives(objectives)
+    save_objectives(tickets)
 
     return new_objective
 
 def update(objective_id, updated_objective):
-    objectives = load_objectives()
+    tickets = load_objectives()
 
-    for index, objective in enumerate(objectives):
+    for index, objective in enumerate(tickets):
         if objective["id"] == objective_id:
 
-            objectives[index] = updated_objective
+            tickets[index] = updated_objective
 
-            save_objectives(objectives)
+            save_objectives(tickets)
 
             return updated_objective
     return None
 
 def delete(objective_id):
-    objectives = load_objectives()
+    tickets = load_objectives()
 
-    for objective in objectives:
+    for objective in tickets:
 
         if objective["id"] == objective_id:
 
-            objectives.remove(objective)
+            tickets.remove(objective)
 
-            save_objectives(objectives)
+            save_objectives(tickets)
 
             return True
     
