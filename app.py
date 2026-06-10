@@ -6,7 +6,8 @@ from services.tickets_service import (
     get_ticket_by_id,
     create_ticket,
     update_ticket_status,
-    delete_ticket
+    delete_ticket,
+    get_tickets_filtered
 )
 
 app = FastAPI()
@@ -20,9 +21,16 @@ def home():
 
 
 @app.get("/tickets")
-def list_tickets():
-    return get_all_tickets()
+def list_tickets(
+    status: str | None = None,
+    priority: str | None = None
+):
 
+    if status or priority:
+
+        return get_tickets_filtered(status, priority)
+
+    return get_all_tickets()
 
 @app.get("/objectives/completed")
 def list_completed_objectives():

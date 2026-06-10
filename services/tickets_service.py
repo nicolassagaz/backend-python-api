@@ -49,3 +49,25 @@ def update_ticket_status(ticket_id, status):
 
 def delete_ticket(objective_id):
     return delete(objective_id)
+
+def get_tickets_filtered(status=None, priority=None):
+
+    tickets = find_all()
+
+    if status:
+
+        tickets = [
+            ticket
+            for ticket in tickets
+            if ticket["status"] == status
+        ]
+
+    if priority:
+
+        tickets = [
+            ticket
+            for ticket in tickets
+            if ticket["priority"] == priority
+        ]
+
+    return tickets
