@@ -19,8 +19,8 @@ def home():
     }
 
 
-@app.get("/objectives")
-def list_objectives():
+@app.get("/tickets")
+def list_tickets():
     return get_all_tickets()
 
 
@@ -29,13 +29,13 @@ def list_completed_objectives():
     return get_completed_objectives()
 
 
-@app.get("/objectives/{objective_id}")
-def find_objective(objective_id: int):
-    objective = get_ticket_by_id(objective_id)
+@app.get("/tickets/{objective_id}")
+def find_ticket(ticket_id: int):
+    ticket = get_ticket_by_id(ticket_id)
 
-    if objective is None:
+    if ticket is None:
         raise HTTPException(status_code=404, detail="Objetivo não encontrado")
-    return objective
+    return ticket
 
 @app.post("/tickets", status_code=201)
 def create_new_ticket(
@@ -58,15 +58,15 @@ def update_ticket(ticket_id: int, status: str):
 
     return ticket
 
-@app.delete("/objectives/{objective_id}")
-def remove_objective(objective_id: int):
+@app.delete("/tickets/{ticket_id}")
+def deleted_ticket_route(ticket_id: int):
     
-    deleted = delete_ticket(objective_id)
+    deleted = delete_ticket(ticket_id)
 
     if deleted is False:
 
-        raise HTTPException(status_code=404, detail="Objetivo não encontrado")
+        raise HTTPException(status_code=404, detail="Chamado não encontrado")
     
     return{
-        "message": "Objetivo removido"
+        "message": "Chamado removido"
     }
